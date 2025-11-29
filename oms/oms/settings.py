@@ -92,10 +92,10 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("POSTGRES_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.getenv("POSTGRES_DB", "database"),
-        "USER": os.getenv("POSTGRES_USER", "user"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "password"),
-        "HOST": os.getenv("POSTGRES_HOST", "db"),
+        "NAME": os.getenv("POSTGRES_DB", "oms"),
+        "USER": os.getenv("POSTGRES_USER", "oms"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "root"),
+        "HOST": os.getenv("POSTGRES_HOST", "oms_db"),
         "PORT": os.getenv("POSTGRES_PORT", "5432"),
     }
 }

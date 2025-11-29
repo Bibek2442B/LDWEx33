@@ -159,3 +159,9 @@ vendor
 ![img.png](oms/static/img_8.png)
 # Exercise 32
 ![img_1.png](oms/static/img_10.png)
+# Exercise 33
+Tables created from products models.
+![img.png](oms/static/img_9.png)
+![alt text](oms/static/image.png)
+# Exercise 34
+![alt text](oms/static/image1.png)

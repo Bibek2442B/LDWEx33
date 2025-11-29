@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 class Category(models.Model):
     name = models.CharField(
@@ -10,28 +12,61 @@ class Category(models.Model):
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         ordering = ["name"]
+
     def __str__(self):
         return self.name
+    
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    stock = models.PositiveIntegerField(default=0)
+    price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]  
+    )
+    stock = models.PositiveIntegerField(
+        default=0,
+        validators=[MinValueValidator(0)]  
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
         related_name="products",
     )
+    sku = models.CharField(
+        max_length=50,
+        unique=True,
+        db_index=True,
+        help_text="Internal stock-keeping unit"
+    )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def clean(self):
+        super().clean()
+        if self.price > 9999.99:
+            raise ValidationError({'price': 'Price cannot exceed 9999.99'})
+
     class Meta:
         ordering = ["name"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'category'], 
+                name='unique_name_in_category'
+            ),
+            models.CheckConstraint(
+                check=models.Q(price__gte=0), 
+                name='price_gte_0'
+            ),
+        ]
+       
     def __str__(self):
         return self.name
-
+    
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
@@ -40,3 +75,6 @@ class Tag(models.Model):
         Product,
         related_name="tags",
     )
+
+    def __str__(self):
+        return self.name
