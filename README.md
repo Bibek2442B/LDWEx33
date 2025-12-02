@@ -165,3 +165,10 @@ Tables created from products models.
 ![alt text](oms/static/image.png)
 # Exercise 34
 ![alt text](oms/static/image1.png)
+# Exercise 35
+### Dropdown and Categories List
+![alt text](oms/static/image2.png)
+### Page/Form to Create or Edit Categories
+![alt text](oms/static/image3.png)
+### Delete confirmation page
+![alt text](oms/static/image4.png)
