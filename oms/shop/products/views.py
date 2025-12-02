@@ -1,6 +1,9 @@
 from django.views import View
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 from django.shortcuts import render  # needed for ProductListView
+from .models import Category
+from .forms import CategoryForm
 
 class RequestExplorerView(View):
     def get(self, request):
@@ -36,3 +39,14 @@ class ProductListView(View):
             "products": products,
         }
         return render(request, "products/list.html", context)
+    
+class CategoryAdminListView(ListView):
+    model = Category
+    template_name = "products/categories/admin_list.html"
+    context_object_name = "categories"
+    paginate_by = 10
+
+class CategoryAdminCreate(CreateView):
+    form_class = CategoryForm
+    template_name = "products/categories/admin_form.html"
+    success_url = "/admin/products/categories/"
