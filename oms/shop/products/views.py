@@ -50,7 +50,7 @@ class CategoryAdminListView(ListView):
 class CategoryAdminCreate(CreateView):
     form_class = CategoryForm
     template_name = "products/categories/admin_form.html"
-    success_url = reverse_lazy("products:admin_categories")
+    success_url = reverse_lazy("shop:products:admin_categories")
 
 class CategoryAdminUpdate(UpdateView):
     model = Category

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'shop',
     'shop.products',
     'sass_processor',
+    'django_bootstrap5',
 ]
 
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'scss')

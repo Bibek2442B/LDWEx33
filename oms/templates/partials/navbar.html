@@ -1,4 +1,5 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'shop:home' %}"></a>
@@ -15,8 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'products' %}active{% endif%}" href="{% url 'shop:products:products' %}">Products</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'admin_categories' %}active{% endif%}" href="{% url 'shop:products:admin_categories' %}">Categories</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'admin_categories' %}active{% endif%}" id="adminDropdown" role= "button" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
+                    <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                        <li><a class="dropdown-item" href="{% url 'shop:products:admin_categories' %}">Manage Categories</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
