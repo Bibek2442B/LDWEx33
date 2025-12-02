@@ -1,7 +1,8 @@
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
-from django.shortcuts import render  # needed for ProductListView
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from .models import Category
 from .forms import CategoryForm
 
@@ -49,4 +50,15 @@ class CategoryAdminListView(ListView):
 class CategoryAdminCreate(CreateView):
     form_class = CategoryForm
     template_name = "products/categories/admin_form.html"
-    success_url = "/admin/products/categories/"
+    success_url = reverse_lazy("products:admin_categories")
+
+class CategoryAdminUpdate(UpdateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = "products/categories/admin_form.html"
+    success_url = reverse_lazy("shop:products:admin_categories")
+
+class CategoryAdminDelete(DeleteView):
+    model = Category
+    template_name = "products/categories/admin_confirm_delete.html"
+    success_url = reverse_lazy("shop:products:admin_categories")
