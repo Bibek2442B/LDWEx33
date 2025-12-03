@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category
+from .models import Category, Product
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
@@ -9,3 +9,9 @@ class CategoryForm(forms.ModelForm):
         if Category.objects.filter(name__iexact=name).exclude(pk=self.instance.pk).exists():
             raise forms.ValidationError("Category with this name already exists.")
         return name
+    
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'stock', 'category', 'sku', 'is_active']
+        

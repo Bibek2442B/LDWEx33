@@ -20,6 +20,7 @@
                     <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'admin_categories' %}active{% endif%}" id="adminDropdown" role= "button" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                         <li><a class="dropdown-item" href="{% url 'shop:products:admin_categories' %}">Manage Categories</a></li>
+                        <li><a class="dropdown-item" href="{% url 'shop:products:admin_products' %}">Manage Products</a></li>
                     </ul>
                 </li>
             </ul>

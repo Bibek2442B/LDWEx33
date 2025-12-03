@@ -4,10 +4,9 @@
     <h1>Category Management</h1>
     <a href="{% url 'shop:products:admin_category_add' %}" class="btn btn-primary mb-3">Add New Category</a>
     {% if categories %}
-        <table class="admin-category-table">
+        <table class="admin-category-table table table-striped">
             <thead>
                 <tr>
-                    <th class=>ID</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Description</th>
@@ -18,7 +17,6 @@
             <tbody>
                 {% for category in categories %}
                     <tr>
-                        <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         <td>{{ category.is_active|yesno:"Active,Inactive" }}</td>
                         <td>{{ category.description }}</td>

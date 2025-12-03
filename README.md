@@ -172,3 +172,10 @@ Tables created from products models.
 ![alt text](oms/static/image3.png)
 ### Delete confirmation page
 ![alt text](oms/static/image4.png)
+# Exercise 36
+### Dropdown and Products List
+![alt text](oms/static/image5.png)
+### Page/Form to Create or Edit Products
+![alt text](oms/static/image6.png)
+### Delete conformation page
+![alt text](oms/static/image7.png)

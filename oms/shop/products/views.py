@@ -3,8 +3,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .models import Category
-from .forms import CategoryForm
+from .models import Category, Product
+from .forms import CategoryForm, ProductForm
 
 class RequestExplorerView(View):
     def get(self, request):
@@ -62,3 +62,25 @@ class CategoryAdminDelete(DeleteView):
     model = Category
     template_name = "products/categories/admin_confirm_delete.html"
     success_url = reverse_lazy("shop:products:admin_categories")
+
+class ProductAdminListView(ListView):
+    model = Product
+    template_name = "products/products/admin_list.html"
+    context_object_name = "products"
+    paginate_by = 10
+
+class ProductAdminCreate(CreateView):
+    form_class = ProductForm
+    template_name = "products/products/admin_form.html"
+    success_url = reverse_lazy("shop:products:admin_products")
+
+class ProductAdminUpdate(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = "products/products/admin_form.html"
+    success_url = reverse_lazy("shop:products:admin_products")
+
+class ProductAdminDelete(DeleteView):
+    model = Product
+    template_name = "products/products/admin_confirm_delete.html"
+    success_url = reverse_lazy("shop:products:admin_products")
